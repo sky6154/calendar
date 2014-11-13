@@ -22,7 +22,7 @@
 	<bean id="calendarUserDao" class="com.mycompany.calendar.dao.JdbcCalendarUserDao">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-	
+
 	<bean id="eventDao" class="com.mycompany.calendar.dao.JdbcEventDao">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
@@ -30,7 +30,6 @@
 	<bean id="eventAttendeeDao" class="com.mycompany.calendar.dao.JdbcEventAttendeeDao">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-
 
 	<bean id="transactionManager"
 		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

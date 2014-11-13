@@ -17,6 +17,7 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import com.mycompany.calendar.domain.Event;
 import com.mycompany.calendar.domain.EventAttendee;
 
 @Repository
@@ -98,5 +99,11 @@ public class JdbcEventAttendeeDao implements EventAttendeeDao {
 		// TODO Assignment 3
 		String sql_query = "delete from events_attendees";
 		this.jdbcTemplate.update(sql_query);
+	}
+
+	@Override
+	public List<EventAttendee> findAllEventAttendees() {
+		String sql_query = "select * from events_attendees";
+		return this.jdbcTemplate.query(sql_query, rowMapper);
 	}
 }

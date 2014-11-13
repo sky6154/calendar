@@ -2,6 +2,7 @@ package com.mycompany.calendar.dao;
 
 import java.util.List;
 
+import com.mycompany.calendar.domain.Event;
 import com.mycompany.calendar.domain.EventAttendee;
 
 public interface EventAttendeeDao {
@@ -14,4 +15,6 @@ public interface EventAttendeeDao {
     public void deleteEventAttendee(int id);
     
     public void deleteAll();
+    
+    public List<EventAttendee> findAllEventAttendees();
 }
