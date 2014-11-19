@@ -1,7 +1,5 @@
 package com.mycompany.calendar.domain;
 
-import java.util.List;
-
 public class EventAttendee {
     private Integer id;
     private Event event;

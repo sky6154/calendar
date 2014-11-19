@@ -17,7 +17,6 @@ import com.mycompany.calendar.dao.EventDao;
 import com.mycompany.calendar.domain.CalendarUser;
 import com.mycompany.calendar.domain.Event;
 import com.mycompany.calendar.domain.EventAttendee;
-import com.mycompany.calendar.service.CalendarService;
 
 /**
  * Handles requests for the application home page.
@@ -34,9 +33,6 @@ public class HomeController {
 	@Autowired
 	EventAttendeeDao eventAttendeeDao;
 	
-	@Autowired
-	CalendarService calendarService;
-	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	/**
@@ -51,6 +47,10 @@ public class HomeController {
 		calendarUsers = calendarUserDao.findAllusers();
 		events = eventDao.findAllEvents();
 		eventAttendees = eventAttendeeDao.findAllEventAttendees();
+		
+		model.addAttribute("calendarUsers", calendarUsers);
+		model.addAttribute("events", events);
+		model.addAttribute("eventAttendees", eventAttendees);
 		
 		return "home";
 	}

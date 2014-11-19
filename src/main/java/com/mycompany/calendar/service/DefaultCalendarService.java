@@ -4,10 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.PlatformTransactionManager;
-import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import com.mycompany.calendar.dao.CalendarUserDao;
 import com.mycompany.calendar.dao.EventAttendeeDao;
@@ -16,7 +13,6 @@ import com.mycompany.calendar.domain.CalendarUser;
 import com.mycompany.calendar.domain.Event;
 import com.mycompany.calendar.domain.EventAttendee;
 import com.mycompany.calendar.domain.EventLevel;
-
 
 @Service("calendarService")
 @Transactional
@@ -27,7 +23,7 @@ public class DefaultCalendarService implements CalendarService {
 	private EventDao eventDao;
 
 	@Autowired
-	private CalendarUserDao userDao;
+	private CalendarUserDao calendarUserDao;
 
 	@Autowired
 	private EventAttendeeDao eventAttendeeDao;
@@ -39,27 +35,27 @@ public class DefaultCalendarService implements CalendarService {
 	/* CalendarUser */
 	@Override
 	public CalendarUser getUser(int id) {
-		return this.userDao.findUser(id);
+		return this.calendarUserDao.findUser(id);
 	}
 
 	@Override
 	public CalendarUser getUserByEmail(String email) {
-		return userDao.findUserByEmail(email);
+		return calendarUserDao.findUserByEmail(email);
 	}
 
 	@Override
 	public List<CalendarUser> getUsersByEmail(String partialEmail) {
-		return userDao.findUsersByEmail(partialEmail);
+		return calendarUserDao.findUsersByEmail(partialEmail);
 	}
 
 	@Override
 	public int createUser(CalendarUser user) {
-		return userDao.createUser(user);
+		return calendarUserDao.createUser(user);
 	}
 
 	@Override
 	public void deleteAllUsers() {
-		userDao.deleteAll();
+		calendarUserDao.deleteAll();
 	}
 
 

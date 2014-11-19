@@ -1,26 +1,27 @@
 package com.mycompany.calendar.dao;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertTrue;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.junit.Before;
-import org.junit.runner.RunWith;
 
 import com.mycompany.calendar.domain.CalendarUser;
 import com.mycompany.calendar.domain.Event;
 import com.mycompany.calendar.domain.EventAttendee;
 import com.mycompany.calendar.domain.EventLevel;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations="/root-context.xml")
-
 public class DaoJUnitTest {
 	@Autowired
 	private CalendarUserDao calendarUserDao;	
