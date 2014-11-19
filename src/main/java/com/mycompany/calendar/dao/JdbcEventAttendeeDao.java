@@ -19,6 +19,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mycompany.calendar.domain.EventAttendee;
 
+// 정확한 경로를 지정해주어 autowired 될 수 있도록 함
 @Repository("eventAttendeeDao")
 public class JdbcEventAttendeeDao implements EventAttendeeDao {
 	private JdbcTemplate jdbcTemplate;
@@ -100,6 +101,7 @@ public class JdbcEventAttendeeDao implements EventAttendeeDao {
 		this.jdbcTemplate.update(sql_query);
 	}
 
+	// 웹상에 모든 Attendees를 출력하기 위해 생성한 메소드
 	@Override
 	public List<EventAttendee> findAllEventAttendees() {
 		String sql_query = "select * from events_attendees";

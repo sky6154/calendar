@@ -13,6 +13,8 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
+<!-- 홈페이지 UI와 레이아웃을 꾸미기 위해 파일 추가 -->
+
 <!-- jQuery -->
 <script src="<c:url value="/resources/js/jquery.js" />"></script>
 
@@ -22,8 +24,6 @@
 <!-- Scrolling Nav JavaScript -->
 <script src="<c:url value="/resources/js/jquery.easing.min.js" />"></script>
 <script src="<c:url value="/resources/js/scrolling-nav.js" />"></script>
-
-<title>Whole Database Info</title>
 
 <!-- Bootstrap Core CSS -->
 <link href="<c:url value="/resources/css/bootstrap.min.css" />"
@@ -39,6 +39,9 @@
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    
+<title>Whole Database Info</title>
 
 </head>
 <body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
@@ -55,15 +58,14 @@
 				<a class="navbar-brand page-scroll" href="#page-top">Intro</a>
 			</div>
 
-			<!-- Collect the nav links, forms, and other content for toggling -->
+			<!-- 해당 위치로 이동할 목록 -->
 			<div class="collapse navbar-collapse navbar-ex1-collapse">
 				<ul class="nav navbar-nav">
-					<!-- Hidden li included to remove active class from about link when scrolled up past about section -->
 					<li class="hidden"><a class="page-scroll" href="#page-top"></a>
 					</li>
-					<li><a class="page-scroll" href="#about">Calendar Users</a></li>
-					<li><a class="page-scroll" href="#services">Events</a></li>
-					<li><a class="page-scroll" href="#contact">EventAttendees</a>
+					<li><a class="page-scroll" href="#users">Calendar Users</a></li>
+					<li><a class="page-scroll" href="#events">Events</a></li>
+					<li><a class="page-scroll" href="#attendees">EventAttendees</a>
 					</li>
 				</ul>
 			</div>
@@ -114,8 +116,8 @@
 		</div>
 	</section>
 
-	<!-- About Section -->
-	<section id="about" class="about-section">
+	<!-- CalendarUsers Section -->
+	<section id="users" class="about-section">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
@@ -148,8 +150,8 @@
 		</div>
 	</section>
 
-	<!-- Services Section -->
-	<section id="services" class="services-section">
+	<!-- Events Section -->
+	<section id="events" class="services-section">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">
@@ -194,8 +196,8 @@
 		</div>
 	</section>
 
-	<!-- Contact Section -->
-	<section id="contact" class="contact-section">
+	<!-- EventAttendees Section -->
+	<section id="attendees" class="contact-section">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12">

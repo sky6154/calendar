@@ -23,7 +23,7 @@ import com.mycompany.calendar.domain.EventAttendee;
  */
 @Controller
 public class HomeController {
-	
+	// DB 접속을 위한 DAO객체 생성
 	@Autowired
 	CalendarUserDao calendarUserDao;
 	
@@ -44,10 +44,12 @@ public class HomeController {
 		List<Event> events;
 		List<EventAttendee> eventAttendees;
 		
+		// 값을 DB로 부터 받아옴
 		calendarUsers = calendarUserDao.findAllusers();
 		events = eventDao.findAllEvents();
 		eventAttendees = eventAttendeeDao.findAllEventAttendees();
 		
+		// 받아온 값들을 model에 추가 후 전송
 		model.addAttribute("calendarUsers", calendarUsers);
 		model.addAttribute("events", events);
 		model.addAttribute("eventAttendees", eventAttendees);

@@ -22,6 +22,7 @@ import org.springframework.stereotype.Repository;
 import com.mycompany.calendar.domain.Event;
 import com.mycompany.calendar.domain.EventLevel;
 
+//정확한 경로를 지정해주어 autowired 될 수 있도록 함
 @Repository("eventDao")
 public class JdbcEventDao implements EventDao {
 	private JdbcTemplate jdbcTemplate;
