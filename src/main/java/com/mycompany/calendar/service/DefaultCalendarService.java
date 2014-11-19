@@ -22,6 +22,7 @@ public class DefaultCalendarService implements CalendarService {
 	@Autowired
 	private EventDao eventDao;
 
+	// userDao 시 root-context에서 type때문에 에러가 발생하여 변수명을 정확히 calendarUserDao로 수정
 	@Autowired
 	private CalendarUserDao calendarUserDao;
 
