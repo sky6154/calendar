@@ -1,60 +1,89 @@
 package com.mycompany.calendar;
 
-import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.mycompany.calendar.dao.CalendarUserDao;
-import com.mycompany.calendar.dao.EventAttendeeDao;
-import com.mycompany.calendar.dao.EventDao;
 import com.mycompany.calendar.domain.CalendarUser;
 import com.mycompany.calendar.domain.Event;
 import com.mycompany.calendar.domain.EventAttendee;
+import com.mycompany.calendar.service.CalendarService;
 
 /**
  * Handles requests for the application home page.
  */
 @Controller
 public class HomeController {
-	// DB 접속을 위한 DAO객체 생성
 	@Autowired
-	CalendarUserDao calendarUserDao;
+	private CalendarService calendarService;	
 	
-	@Autowired
-	EventDao eventDao;
+	private CalendarUser[] calendarUsers = null;
+	private Event[] events = null;
+	private EventAttendee[] eventAttentees = null;
 	
-	@Autowired
-	EventAttendeeDao eventAttendeeDao;
+	private Random random = new Random(System.currentTimeMillis());
+
+	private static final int numInitialNumUsers = 12;
+	private static final int numInitialNumEvents = 4;
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		List<CalendarUser> calendarUsers;
-		List<Event> events;
-		List<EventAttendee> eventAttendees;
+		calendarUsers = new CalendarUser[numInitialNumUsers];
+		events = new Event[numInitialNumEvents];
+		eventAttentees = new EventAttendee[numInitialNumEvents];
 		
-		// 값을 DB로 부터 받아옴
-		calendarUsers = calendarUserDao.findAllusers();
-		events = eventDao.findAllEvents();
-		eventAttendees = eventAttendeeDao.findAllEventAttendees();
+		this.calendarService.deleteAllUsers();
+		this.calendarService.deleteAllEvents();
+		this.calendarService.deleteAllEventAttendees();
 		
-		// 받아온 값들을 model에 추가 후 전송
+		for (int i = 0; i < numInitialNumUsers; i++) {
+			calendarUsers[i] = new CalendarUser();
+			calendarUsers[i].setEmail("user" + i + "@example.com");
+			calendarUsers[i].setPassword("user" + i);
+			calendarUsers[i].setName("User" + i);
+			calendarUsers[i].setId(calendarService.createUser(calendarUsers[i]));
+		}
+		
+		for (int i = 0; i < numInitialNumEvents; i++) {
+			events[i] = new Event();
+			events[i].setSummary("Event Summary - " + i);
+			events[i].setDescription("Event Description - " + i);
+			events[i].setOwner(calendarUsers[random.nextInt(numInitialNumUsers)]);
+			switch (i) {				          /* Updated by Assignment 3 */
+				case 0:
+					events[i].setNumLikes(0);  							
+					break;
+				case 1:
+					events[i].setNumLikes(9);
+					break;
+				case 2:
+					events[i].setNumLikes(10);
+					break;
+				case 3:
+					events[i].setNumLikes(10);
+					break;
+			}
+			events[i].setId(calendarService.createEvent(events[i]));
+		}
+		
+		for (int i = 0; i < numInitialNumEvents; i++) {
+			eventAttentees[i] = new EventAttendee();
+			eventAttentees[i].setEvent(events[i]);
+			eventAttentees[i].setAttendee(calendarUsers[3 * i ]);
+			eventAttentees[i].setAttendee(calendarUsers[3 * i + 1]);
+			eventAttentees[i].setAttendee(calendarUsers[3 * i + 2]);
+			eventAttentees[i].setId(calendarService.createEventAttendee(eventAttentees[i]));
+		}
+		
+		//TODO model에 calendarUsers, events, eventAttentees 배열 객체 추가 
 		model.addAttribute("calendarUsers", calendarUsers);
 		model.addAttribute("events", events);
-		model.addAttribute("eventAttendees", eventAttendees);
-		
+		model.addAttribute("eventAttentees", eventAttentees);
 		return "home";
 	}
-	
 }

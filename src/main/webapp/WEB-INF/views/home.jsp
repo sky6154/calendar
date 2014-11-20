@@ -210,7 +210,7 @@
 							<td><h3>event</h3></td>
 							<td><h3>attendee</h3></td>
 						</tr>
-						<c:forEach var="eventAttendee" items="${eventAttendees}"
+						<c:forEach var="eventAttendee" items="${eventAttentees}"
 							varStatus="status">
 
 							<tr>
